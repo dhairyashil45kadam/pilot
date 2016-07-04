@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" ng-app="PilotApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Pilot</title>
+  <!-- STYLES -->
+  <!-- build:css lib/css/main.min.css -->
+  <link rel="stylesheet" type="text/css" href="components/bootstrap/dist/css/bootstrap.min.css">
+  <!--<link rel="stylesheet" type="text/css" href="components/spinkit/spinkit.min.css">-->
+  <link rel="stylesheet" type="text/css" href="components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="components/rdash-ui/dist/css/rdash.min.css">
+  <link rel="stylesheet" type="text/css" href="css/wizard-style.css">
+  <link rel="stylesheet" type="text/css" href="css/custom.css">
+  <!-- endbuild -->
+  <!-- SCRIPTS -->
+  <!-- build:js lib/js/main.min.js -->
+  <script type="text/javascript" src="components/custom/jquery.min.js"></script>
+
+  <script type="text/javascript" src="components/angular/angular.min.js"></script>
+
+  <script type="text/javascript" src="components/custom/chosen.jquery.min.js"></script>
+  <script type="text/javascript" src="components/custom/angular-chosen.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="components/custom/chosen.css" />
+
+  <script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script type="text/javascript" src="components/angular-cookies/angular-cookies.min.js"></script>
+  <script type="text/javascript" src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="components/loader/spin.min.js"></script>
+  <script type="text/javascript" src="components/loader/angular-spinner.min.js"></script>
+  <script type="text/javascript" src="components/loader/angular-loading-spinner.js"></script>
+  <script src="https://code.angularjs.org/1.5.7/angular-resource.min.js"></script>
+  <script type="text/javascript" src="components/angular/angular_animate.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+  <script type="text/javascript" src="components/angular/paging.js"></script>
+
+  <!--<script type="text/javascript" src="components/spinkit/spinkit-loader.min.js"></script-->
+  <!-- endbuild -->
+  <!-- Custom Scripts -->
+  <script type="text/javascript" src="js/module.js"></script>
+  <script type="text/javascript" src="js/routes.js"></script>
+  <script type="text/javascript" src="js/controllers/master-ctrl.js"></script>
+  <script type="text/javascript" src="js/directives/loading.js"></script>
+  <script type="text/javascript" src="js/directives/widget-body.js"></script>
+  <script type="text/javascript" src="js/directives/widget-footer.js"></script>
+  <script type="text/javascript" src="js/directives/widget-header.js"></script>
+  <script type="text/javascript" src="js/directives/widget.js"></script>
+  <script type="text/javascript" src="js/controllers/DatePicker.js"></script>
+  <script type="text/javascript" src="js/controllers/driver/driverCtrl.js"></script>
+  <script type="text/javascript" src="js/controllers/truck/truckCtrl.js"></script>
+  <script type="text/javascript" src="js/controllers/transporter/transporterCtrl.js"></script>
+
+  <style>
+    select.localytics-chosen {
+      display: block !important;
+      position:absolute;
+      clip:rect(0,0,0,0);
+      height: 29px;
+    }
+    .border-red {
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body ng-controller="MasterCtrl">
+  <!--<ng-loader settings="{spinkit: 'sk-wave', class:'violet'}"></ng-loader>-->
+  <!-- <route-loading-indicator></route-loading-indicator> -->
+  <span us-spinner="{radius:30, width:8, length: 16}"></span> 
+  <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak  ng-hide="location.path() === '/login' || location.path() === '/'">
+    <ng-include src="'templates/sidebar.html'"></ng-include>
+    
+
+    <div id="content-wrapper">
+      <div class="page-content">
+
+
+        <ng-include src="'templates/header.html'"></ng-include>
+
+        <!-- Main Content -->
+        <div ui-view></div>
+
+      </div><!-- End Page Content -->
+    </div><!-- End Content Wrapper -->
+  </div><!-- End Page Wrapper -->
+  <ng-include src="'templates/login.html'"  ng-show="location.path() === '/login' || location.path() === '/'"></ng-include>
+</body>
+</html>

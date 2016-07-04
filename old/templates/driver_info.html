@@ -1,0 +1,35 @@
+<div class="row">    
+    <div class="col-lg-12">
+        <rd-widget>
+          <rd-widget-header icon="fa-users" title="Driver Info">                
+          </rd-widget-header>  
+
+          <!-- the links to our nested states using relative paths -->
+          <!-- add the active class if the state matches our ui-sref -->
+          <div id="status-buttons" class="text-center">
+              <a ui-sref-active="active" ui-sref=".driver_personal"><span>1</span> Personal</a>
+              <a ui-sref-active="active" ui-sref=".driver_medical"><span>2</span> Medical</a>
+              <a ui-sref-active="active" ui-sref=".driver_rewards"><span>3</span> Rewards</a>
+              <a ui-sref-active="active" ui-sref=".driver_consequence"><span>4</span> Consequence</a>
+              <a ui-sref-active="active" ui-sref=".driver_training"><span>5</span> Training</a>
+          </div>    
+      
+          <rd-widget-body classes="medium no-padding">
+            <!-- use ng-submit to catch the form submission and use our Angular function -->
+            <form name="driverForm" id="signup-form" ng-submit="processForm()" novalidate>
+                <!-- our nested state views will be injected here -->
+                <div id="form-views" ui-view></div>
+            </form>
+          </rd-widget-body>
+        <rd-widget>
+    </div>
+</div>  
+  
+  
+  
+  <!-- show our formData as it is being typed -->
+  <!--<pre>
+    {{ formData }}
+  </pre>-->
+
+

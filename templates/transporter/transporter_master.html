@@ -1,0 +1,187 @@
+<div class="row">    
+    <div class="col-lg-12">
+        <rd-widget>
+          <div class="driver-info-widget">
+          <rd-widget-header icon="fa-users" title="Transporter Info">                
+          </rd-widget-header>  
+
+          
+      
+          <rd-widget-body classes="medium no-padding driver-info-widget-body">
+            <!-- use ng-submit to catch the form submission and use our Angular function -->
+            <form name="transporterForm" id="signup-form" ng-submit="submitForm()" novalidate>
+                <div class="row">    
+                    <div class="col-lg-12">
+                        <rd-widget>
+                            <rd-widget-body classes="no-padding">
+                                <div class="col-sm-12 col-md-12">  
+                                    <div class="row">
+                                         <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : transporterForm.transporter_code.$invalid  && (transporterForm.transporter_code.$dirty || submitted || transporterForm.transporter_code.touched)}">
+                                            <label  for="exampleSelect5">Plant Code</label>
+                                            <select
+                                                chosen
+                                                multiple
+                                                allow-single-deselect="true"
+                                                data-placeholder="Choose Your Vehicle No."
+                                                no-results-text="'Tough luck'"
+                                                ng-model="formData.plant_code"
+                                                ng-options="value for value in optionsFromQuery"
+                                                style="width:100% !important;">
+                                                <option value=""></option>
+                                            </select>
+                                            <p ng-show="transporterForm.plant_code.$error.required && (transporterForm.plant_code.$dirty || transporterForm.plant_code.touched || submitted)" class="help-block">Plant Code is required</p>
+                                            <p ng-show="transporterForm.plant_code.$error.maxlength" class="help-block">Plant Code not more than 4 characters</p>
+                                        </fieldset>
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : transporterForm.transporter_code.$invalid  && (transporterForm.transporter_code.$dirty || submitted || transporterForm.transporter_code.touched)}">
+                                            <label for="exampleInputEmail1">Transporter Code</label>
+                                            <input type="text" name="transporter_code" class="form-control" id="transporter_code" placeholder="Transporter Code" ng-pattern ="/^[a-zA-Z0-9\s]*$/" ng-model="formData.transporter_code" required ng-maxlength="10">
+                                            <p ng-show="transporterForm.transporter_code.$error.required && (transporterForm.transporter_code.$dirty || transporterForm.transporter_code.touched || submitted)" class="help-block">Transporter Code is required</p>
+                                            <p ng-show="transporterForm.transporter_code.$error.maxlength" class="help-block">Transporter Code not more than 10 characters</p>
+                                            <p class="help-block" ng-show="transporterForm.transporter_code.$error.pattern">Special symbols are not allowed</p>  
+                                        </fieldset>
+                                    </div>
+                                       
+                                <div class="row"> 
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : transporterForm.transporter_name.$invalid  && (transporterForm.transporter_name.$dirty || submitted || transporterForm.transporter_name.touched)}">
+                                            <label for="exampleInputEmail1">Transporter Name </label>
+                                            <input type="text" name="transporter_name" class="form-control" id="transporter_name" placeholder="Transporter Name" ng-pattern ="/^[a-zA-Z \s]*$/" ng-model="formData.transporter_name" required ng-maxlength="36">
+                                            <p ng-show="transporterForm.transporter_name.$error.required && (transporterForm.transporter_name.$dirty || transporterForm.transporter_name.touched || submitted)" class="help-block">Transporter Name is required</p>
+                                            <p ng-show="transporterForm.transporter_name.$error.maxlength" class="help-block">Transporter Name not more than 36 characters</p>
+                                            <p class="help-block" ng-show="transporterForm.transporter_name.$error.pattern">Only alphabets are allowed</p>  
+                                    </fieldset> 
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : transporterForm.address_line_1.$invalid  && (transporterForm.address_line_1.$dirty || submitted || transporterForm.address_line_1.touched)}">
+                                        <label  for="exampleSelect5">Address Line 1</label>
+                                        <textarea  ng-model="formData.address_line_1" name="address_line_1" rows="2" cols="30" class="form-control" id="address_line_1" placeholder="Address Line 1" ng-maxlength="30" maxlength="30" required>
+                                        </textarea>
+                                        <p ng-show="transporterForm.address_line_1.$error.required && (transporterForm.address_line_1.$dirty || transporterForm.address_line_1.touched || submitted)" class="help-block">Address Line 1 is required</p>
+                                        <p ng-show="transporterForm.address_line_1.$error.maxlength" class="help-block">Address Line 1 not more than 30 characters</p> 
+                                    </fieldset>
+                                 </div>  
+                                <div class="row"> 
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : transporterForm.address_line_2.$invalid  && (transporterForm.address_line_2.$dirty || submitted || transporterForm.address_line_2.touched)}">
+                                        <label  for="exampleSelect5">Address Line 2</label>
+                                        <textarea  ng-model="formData.address_line_2" name="address_line_2" rows="2" cols="30" class="form-control" id="address_line_2" placeholder="Address Line 2" ng-maxlength="30" maxlength="30">
+                                        </textarea>
+                                        <p ng-show="transporterForm.address_line_2.$error.maxlength" class="help-block">Address Line 2 not more than 30 characters</p> 
+                                    </fieldset>
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : transporterForm.address_line_3.$invalid  && (transporterForm.address_line_3.$dirty || submitted || transporterForm.address_line_3.touched)}">
+                                        <label  for="exampleSelect5">Address Line 3</label>
+                                        <textarea  ng-model="formData.address_line_3" name="address_line_3" rows="2" cols="30" class="form-control" id="address_line_3" placeholder="Address Line 3" ng-maxlength="30" maxlength="30">
+                                        </textarea>
+                                        <p ng-show="transporterForm.address_line_3.$error.maxlength" class="help-block">Address Line 3 not more than 30 characters</p> 
+                                    </fieldset>
+                                 </div>   
+                                <div class="row"> 
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">City</label>
+                                        <input type="text" class="form-control" id="city" name="city" ng-model="fornData.city" placeholder="City">
+                                    </fieldset>
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">District</label>
+                                        <input type="text" class="form-control" id="district"  name="district" ng-model="fornData.district" placeholder="District">
+                                    </fieldset>
+                                </div>
+                                <div class="row"> 
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">State </label>
+                                        <input type="text" class="form-control" id="state" name="state" ng-model="fornData.state" placeholder="State ">
+                                    </fieldset>
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">City Postal Code </label>
+                                        <input type="text" class="form-control" id="city_postal_code"  name="city_postal_code" ng-model="fornData.city_postal_code" placeholder="City Postal Code ">
+                                    </fieldset>
+                                </div> 
+                                <div class="row"> 
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">Proprieter/Partner picture </label>
+                                        <input type="text" class="form-control" id="images" name="images" ng-model="fornData.images" placeholder="Images ">
+                                    </fieldset>
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">Proprieter/Partner name </label>
+                                        <input type="text" class="form-control" id="partener_name"  name="partener_name" ng-model="fornData.partener_name" placeholder="Proprieter / Partner name">
+                                    </fieldset>
+                                </div>
+                                <div class="row"> 
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">Proprieter/Partner mobile no </label>
+                                        <input type="text" class="form-control" id="partener_mobile" name="partener_mobile" ng-model="fornData.partener_mobile" placeholder="Mobile no. ">
+                                    </fieldset>
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">Proprieter/Partner date of birth </label>
+                                        <input type="text" class="form-control" id="partener_dob"  name="partener_dob" ng-model="fornData.partener_dob" placeholder="Date of birth">
+                                    </fieldset>
+                                </div>
+                                 <div class="row"> 
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">Telephone </label>
+                                        <input type="text" class="form-control" id="telephone" name="telephone" ng-model="fornData.telephone" placeholder="Telephone no. ">
+                                    </fieldset>
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">Fax </label>
+                                        <input type="text" class="form-control" id="fax"  name="fax" ng-model="fornData.fax" placeholder="Fax no.">
+                                    </fieldset>
+                                </div>
+                                <div class="row"> 
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">Contact person name </label>
+                                        <input type="text" class="form-control" id="contact_person_name" name="contact_person_name" ng-model="fornData.contact_person_name" placeholder="Contact person name">
+                                    </fieldset>
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">Contact person mobile number </label>
+                                        <input type="text" class="form-control" id="contact_person_mobile"  name="contact_person_mobile" ng-model="fornData.contact_person_mobile" placeholder="Contact person mobile number">
+                                    </fieldset>
+                                </div>
+                                <div class="row"> 
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">Contract Start date </label>
+                                        <input type="text" class="form-control" id="contract_start_date" name="contract_start_date" ng-model="fornData.contract_start_date" placeholder="Contract Start date">
+                                    </fieldset>
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">Contract End date </label>
+                                        <input type="text" class="form-control" id="contract_end_date"  name="contract_end_date" ng-model="fornData.contract_end_date" placeholder="Contract End date">
+                                    </fieldset>
+                                </div>
+                                <div class="row"> 
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">Contact person e-mail address </label>
+                                        <input type="text" class="form-control" id="contact_email" name="contact_email" ng-model="fornData.contact_email" placeholder="e-mail address">
+                                    </fieldset>
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">Remarks</label>
+                                        <textarea  ng-model="formData.remark" name="remark" rows="2" cols="30" class="form-control" id="remark" placeholder="Remarks" ng-maxlength="100" maxlength="100">
+                                        </textarea>
+                                    </fieldset>
+                                </div>
+                                <div class="row"> 
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">Alternate Contact Number </label>
+                                        <input type="text" class="form-control" id="alternate_contact_number" name="alternate_contact_number" ng-model="fornData.alternate_contact_number" placeholder="Alternate Contact Number">
+                                    </fieldset>
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">Transporter Business Identification Number </label>
+                                        <input type="text" class="form-control" id="transporter_business_identification_number"  name="transporter_business_identification_number" ng-model="fornData.transporter_business_identification_number" placeholder="Transporter Business Identification Number">
+                                    </fieldset>
+                                </div>
+                                <div class="row"> 
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                        <label  for="exampleSelect5">Status </label>
+                                        <input type="text" class="form-control" id="status" name="status" ng-model="fornData.status" placeholder="Status">
+                                    </fieldset>
+                                </div>
+                                    
+                                </div>
+                            </rd-widget-body>
+                        </rd-widget>   
+                    </div>
+                </div>
+                <center>
+                    <div>
+                       <button type="submit" class="btn btn-primary">Add Transporter</button>
+                    </div>
+                </center>
+            </form>
+          </rd-widget-body>
+          </div>
+        <rd-widget>
+    </div>
+</div>  

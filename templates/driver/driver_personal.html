@@ -1,0 +1,285 @@
+<style>
+    .full button span {
+        background-color: limegreen;
+        border-radius: 32px;
+        color: black;
+    }
+    .partially button span {
+        background-color: orange;
+        border-radius: 32px;
+        color: black;
+
+    }
+</style>
+
+
+<div class="row">    
+    <div class="col-lg-12">
+        <rd-widget>
+            <rd-widget-body classes="no-padding">
+                <div class="col-sm-12 col-md-12">  
+                    <div class="row">                  
+                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6"  ng-class="{ 'has-error' : driverForm.driver_ID.$invalid && (driverForm.driver_ID.$dirty || formStepSubmitted)}">
+                            <label for="exampleInputEmail1">Driver ID</label>
+                            <input type="text" name="driver_ID" class="form-control" id="exampleInputEmail1" placeholder="Driver ID" ng-model="formData.driver_ID" ng-maxlength="30" required>
+                             <p ng-show="driverForm.driver_ID.$error.required && (driverForm.driver_ID.$dirty || formStepSubmitted)" class="help-block">Driver ID is required.</p>
+                             <p ng-show="driverForm.driver_ID.$error.maxlength && (driverForm.driver_ID.$dirty || formStepSubmitted)" class="help-block">Driver ID should contain less than 30 characters.</p>
+                        </fieldset>
+                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                            <label for="exampleInputEmail1">NFC card Number</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="NFC card Number">
+                        </fieldset>
+                    </div>
+                    <div class="row"> 
+                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.driver_type.$invalid && (driverForm.driver_type.$dirty || formStepSubmitted)}">
+                            <label for="exampleSelect1">Actual / Substitute</label>
+                            <select name="driver_type" class="form-control" id="exampleSelect1"
+                             ng-model="formData.driver_type"
+                             ng-options="option.value as option.name for option in driver_type"
+                             required>
+                            </select>
+                            <p ng-show="driverForm.driver_type.$error.required && (driverForm.driver_type.$dirty || formStepSubmitted)" class="help-block">Select Actual / Substitute.</p>
+                        </fieldset>
+                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.issue_type.$invalid && (driverForm.issue_type.$dirty || formStepSubmitted)}">
+                            <label for="exampleSelect2">Issue / Re  issue</label>
+                            <select name="issue_type" class="form-control" id="exampleSelect2"
+                             ng-model="formData.issue_type"
+                             ng-options="option.value as option.name for option in issue_type" required>
+                            </select>
+                            <p ng-show="driverForm.issue_type.$error.required && (driverForm.issue_type.$dirty || formStepSubmitted)" class="help-block">Select Issue / Re  issue.</p>
+                        </fieldset>
+                    </div>    
+                    <div class="row"> 
+                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.first_name.$invalid && (driverForm.first_name.$dirty || formStepSubmitted)}">
+                            <label for="exampleInputEmail1">First Name</label>
+                            <input type="text" name="first_name" class="form-control" id="exampleInputEmail1" placeholder="First Name" ng-model="formData.first_name" required ng-pattern ="/^[a-zA-Z\s]*$/" ng-maxlength="30">
+                            <p ng-show="driverForm.first_name.$error.required && (driverForm.first_name.$dirty || formStepSubmitted)" class="help-block">The First name is required.</p>
+                            <p ng-show="driverForm.first_name.$error.pattern && (driverForm.first_name.$dirty || formStepSubmitted)" class="help-block">The First name must contain alphabets only.</p>
+                            <p ng-show="driverForm.first_name.$error.maxlength && (driverForm.driver_ID.$dirty || formStepSubmitted)" class="help-block">First name should contain less than 30 characters.</p>
+                        </fieldset>
+                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.last_name.$invalid && (driverForm.last_name.$dirty || formStepSubmitted)}">
+                            <label for="exampleInputEmail1">Last Name</label>
+                            <input type="text" name="last_name" class="form-control" id="exampleInputEmail1" placeholder="Last Name" ng-model="formData.last_name" required ng-pattern ="/^[a-zA-Z\s]*$/" ng-maxlength="30">
+                            <p ng-show="driverForm.last_name.$error.required && (driverForm.last_name.$dirty || formStepSubmitted)" class="help-block">The Last name is required.</p>
+                            <p ng-show="driverForm.last_name.$error.pattern && (driverForm.last_name.$dirty || formStepSubmitted)" class="help-block">The Last name must contain alphabets only.</p>
+                            <p ng-show="driverForm.last_name.$error.maxlength && (driverForm.last_name.$dirty || formStepSubmitted)" class="help-block">Last name should contain less than 30 characters.</p>
+                        </fieldset>
+                    </div>
+                    <div class="row">  
+                         <!-- <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                            <label for="exampleSelect2">Gender</label>
+                            <select name="gender" class="form-control" id="exampleSelect3"
+                             ng-model="driverForm.gender"
+                             ng-options="gender.no as gender.Name for gender in genderList"
+                             ng-required="true">
+                                <option value=''>Select</option>
+                            </select>
+                        </fieldset> -->
+                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.gender.$invalid && (driverForm.gender.$dirty || formStepSubmitted)}">
+                            <label for="exampleSelect1">Gender</label>
+                            <select name="gender" class="form-control" id="exampleSelect1"
+                             ng-model="formData.gender"
+                             ng-options="option.value as option.name for option in genderList"
+                             required>
+                            </select>
+                            <p ng-show="driverForm.gender.$error.required && (driverForm.gender.$dirty || formStepSubmitted)" class="help-block">Gender is required.</p>
+                        </fieldset>
+                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.contact_no.$invalid && (driverForm.contact_no.$dirty || formStepSubmitted)}">
+                            <label for="exampleInputEmail1">Contact No</label>
+                            <input type="text" name="contact_no" class="form-control" id="exampleInputEmail1" placeholder="Contact No" ng-model="formData.contact_no" required ng-pattern ="/^[0-9\s]*$/" ng-maxlength="10" ng-minlength="10">
+                            <p ng-show="driverForm.contact_no.$error.required && (driverForm.contact_no.$dirty || formStepSubmitted)" class="help-block">The Contact No is required.</p>
+                            <p ng-show="driverForm.contact_no.$error.pattern && (driverForm.contact_no.$dirty || formStepSubmitted)" class="help-block">The Contact No must contain numbers only.</p>
+                            <p ng-show="driverForm.contact_no.$error.maxlength && (driverForm.contact_no.$dirty || formStepSubmitted)" class="help-block">Contact No should must contain 10 characters.</p>
+                            <p ng-show="driverForm.contact_no.$error.minlength && (driverForm.contact_no.$dirty || formStepSubmitted)" class="help-block">Contact No should must contain 10 characters.</p>
+                        </fieldset>
+                    </div>
+                    <div class="row">                        
+                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                            <label for="exampleSelect1">Marital Status</label>
+                            <select name="marital_status" class="form-control" id="exampleSelect1"
+                             ng-model="formData.marital_status"
+                             ng-options="option.value as option.name for option in maritalList">
+                            </select>
+                        </fieldset>
+                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                            <label  for="exampleSelect5">Upload Photo </label>
+                            <input type="file">
+                        </fieldset>
+                    </div>
+                    <div class="row">  
+                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                            <label  for="exampleSelect6">Blood Group</label>
+                            <select name="blood_group" class="form-control" id="exampleSelect6"
+                             ng-model="formData.blood_group"
+                             ng-options="option.value as option.name for option in bloodGroupList">
+                            </select>
+                        </fieldset>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-6" ng-controller="DatepickerTodayMax">
+                            <label for="exampleInputEmail1">Date of Birth</label>
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="formData.dob" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.passport_no.$invalid && (driverForm.passport_no.$dirty || formStepSubmitted)}">
+                            <label for="exampleInputEmail1">Passport No</label>
+                            <input type="text" name="passport_no" class="form-control" id="exampleInputEmail1" placeholder="Passport No" ng-model="formData.passport_no" ng-pattern ="/^[A-Za-z0-9\s]*$/" ng-maxlength="15">
+                            <p ng-show="driverForm.passport_no.$error.pattern && (driverForm.passport_no.$dirty || formStepSubmitted)" class="help-block">The Passport No must contain aplhanumerics only.</p>
+                            <p ng-show="driverForm.passport_no.$error.maxlength && (driverForm.passport_no.$dirty || formStepSubmitted)" class="help-block">Contact No should should contain less than 15 characters.</p>
+                        </fieldset>
+                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.aadhar_no.$invalid && (driverForm.aadhar_no.$dirty || formStepSubmitted)}">
+                            <label for="exampleInputEmail1">Aadhaar No</label>
+                            <input type="text" name="aadhar_no" class="form-control" id="exampleInputEmail1" placeholder="Aadhaar No" ng-model="formData.aadhar_no" ng-pattern ="/^[A-Za-z0-9\s]*$/" ng-maxlength="15">
+                            <p ng-show="driverForm.aadhar_no.$error.pattern && (driverForm.aadhar_no.$dirty || formStepSubmitted)" class="help-block">Aadhaar No must contain aplhanumerics only.</p>
+                            <p ng-show="driverForm.aadhar_no.$error.maxlength && (driverForm.aadhar_no.$dirty || formStepSubmitted)" class="help-block">Aadhaar No should should contain less than 15 characters.</p>
+                        </fieldset>
+                    </div>
+                    <div class="row">
+                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                            <label  for="exampleSelect5">Default Vehicle No option to have more vehicles</label>
+                            <select
+                                chosen
+                                multiple
+                                allow-single-deselect="false"
+                                data-placeholder="Choose Your Vehicle No."
+                                no-results-text="'Tough luck'"
+                                ng-model="driverForm.vehicle_no"
+                                ng-options="value for value in optionsFromQuery"
+                                style="width:100% !important;" required>
+                            </select>
+                        </fieldset>
+                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                            <label  for="exampleSelect5">Plant(s) mark one as default</label>
+                            <select
+                                chosen
+                                multiple
+                                allow-single-deselect="true"
+                                data-placeholder="Choose Your Plants"
+                                no-results-text="'Tough luck'"
+                                ng-model="driverForm.foo"
+                                ng-options="value for value in optionsFromQuery1"
+                                style="width:100% !important;" required>
+                            </select>
+                    </fieldset>
+                    
+                </div>
+                <div class="row">
+                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.transporter_name.$invalid && (driverForm.transporter_name.$dirty || formStepSubmitted)}">
+                        <label  for="exampleSelect5">Transporter Name</label>
+                        <select
+                            chosen
+                            multiple
+                            allow-single-deselect="false"
+                            ng-model="formData.transporter_name"
+                            ng-options="option.value as option.name for option in transporteNames"
+                            style="width:100% !important;" required>
+                        </select>
+                         <p ng-show="driverForm.transporter_name.$error.required && (driverForm.transporter_name.$dirty || formStepSubmitted)" class="help-block">Transporter is required.</p>
+                    </fieldset>
+                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                        <label  for="exampleSelect5">Transporter Code</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" value="154623" placeholder="Transporter Code" disabled>
+                    </fieldset>
+                </div>
+                <div class="row">
+                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.trans_super.$invalid && (driverForm.trans_super.$dirty || formStepSubmitted)}">
+                            <label for="exampleInputEmail1">Transporter Supervisor</label>
+                            <input type="text" name="trans_super" class="form-control" id="exampleInputEmail1" placeholder="Transporter Supervisor" ng-model="formData.trans_super" ng-pattern ="/^[A-Za-z\s]*$/" ng-maxlength="30" required>
+                            <p ng-show="driverForm.trans_super.$error.required && (driverForm.trans_super.$dirty || formStepSubmitted)" class="help-block">Transporter Supervisor is required.</p>
+                            <p ng-show="driverForm.trans_super.$error.pattern && (driverForm.trans_super.$dirty || formStepSubmitted)" class="help-block">Transporter Supervisor must contain aplhabets only.</p>
+                            <p ng-show="driverForm.trans_super.$error.maxlength && (driverForm.trans_super.$dirty || formStepSubmitted)" class="help-block">Transporter Supervisor should should contain less than 30 characters.</p>
+                        </fieldset>
+                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.dlPoi.$invalid && (driverForm.dlPoi.$dirty || formStepSubmitted)}">
+                            <label for="exampleInputEmail1">Driving License - Place of issue</label>
+                            <input type="text" name="dlPoi" class="form-control" id="exampleInputEmail1" placeholder="Driving License - Place of issue" ng-model="formData.dlPoi" ng-pattern ="/^[A-Za-z\s]*$/" ng-maxlength="30" required>
+                            <p ng-show="driverForm.dlPoi.$error.required && (driverForm.dlPoi.$dirty || formStepSubmitted)" class="help-block">Driving License - Place of issue is required.</p>
+                            <p ng-show="driverForm.dlPoi.$error.pattern && (driverForm.dlPoi.$dirty || formStepSubmitted)" class="help-block">Driving License - Place of issue must contain aplhabets only.</p>
+                            <p ng-show="driverForm.dlPoi.$error.maxlength && (driverForm.dlPoi.$dirty || formStepSubmitted)" class="help-block">Driving License - Place of issue should should contain less than 30 characters.</p>
+                        </fieldset>
+                </div>
+                <div class="row"> 
+                    <div class="form-group col-xs-12 col-sm-6 col-md-6" ng-controller="DatepickerTodayMin">
+                        <label for="exampleInputEmail1">Driving License - Expiry Date</label>
+                        <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="formData.dlExp" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.address_line_1.$invalid && (driverForm.address_line_1.$dirty || formStepSubmitted)}">
+                        <label  for="exampleSelect5">Address Line 1</label>
+                        <textarea ng-model="formData.address_line_1" name="address_line_1" rows="2" cols="30" class="form-control" id="address_line_1" placeholder="Address Line 1" ng-maxlength="30" required>
+                         </textarea>
+                         <p ng-show="driverForm.address_line_1.$error.required && (driverForm.address_line_1.$dirty || formStepSubmitted)" class="help-block">Address Line 1 is required.</p>
+                        <p ng-show="driverForm.address_line_1.$error.maxlength && (driverForm.address_line_1.$dirty || formStepSubmitted)" class="help-block">Address Line 1 should contain less than 30 characters.</p>
+                    </fieldset>
+                </div>
+
+                <div class="row"> 
+                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.address_line_2.$invalid && (driverForm.address_line_2.$dirty || formStepSubmitted)}">
+                        <label  for="exampleSelect5">Address Line 2</label>
+                        <textarea ng-model="formData.address_line_2" name="address_line_2" rows="2" cols="30" class="form-control" id="address_line_2" placeholder="Address Line 2" ng-maxlength="30">
+                        </textarea>
+                        <p ng-show="driverForm.address_line_2.$error.maxlength && (driverForm.address_line_2.$dirty || formStepSubmitted)" class="help-block">Address Line 2 should contain less than 30 characters.</p>
+                    </fieldset>
+                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.address_line_3.$invalid && (driverForm.address_line_3.$dirty || formStepSubmitted)}">
+                        <label  for="exampleSelect5">Address Line 3</label>
+                        <textarea ng-model="formData.address_line_3" name="address_line_3" rows="2" cols="30" class="form-control" id="address_line_3" placeholder="Address Line 3" ng-maxlength="30">
+                        </textarea>
+                        <p ng-show="driverForm.address_line_3.$error.maxlength && (driverForm.address_line_3.$dirty || formStepSubmitted)" class="help-block">Address Line 3 should contain less than 30 characters.</p>
+                    </fieldset>
+                </div>
+                <div class="row">
+                     <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.city.$invalid && (driverForm.city.$dirty || formStepSubmitted)}">
+                            <label for="exampleInputEmail1">City</label>
+                            <input type="text" name="city" class="form-control" id="exampleInputEmail1" placeholder="City" ng-model="formData.city" ng-pattern ="/^[A-Za-z\s]*$/" ng-maxlength="20" required>
+                            <p ng-show="driverForm.city.$error.required && (driverForm.city.$dirty || formStepSubmitted)" class="help-block">City is required.</p>
+                            <p ng-show="driverForm.city.$error.pattern && (driverForm.city.$dirty || formStepSubmitted)" class="help-block">City must contain aplhabets only.</p>
+                            <p ng-show="driverForm.city.$error.maxlength && (driverForm.city.$dirty || formStepSubmitted)" class="help-block">City should contain less than 20 characters.</p>
+                        </fieldset>
+                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.district.$invalid && (driverForm.district.$dirty || formStepSubmitted)}">
+                            <label for="exampleInputEmail1">District</label>
+                            <input type="text" name="district" class="form-control" id="exampleInputEmail1" placeholder="District" ng-model="formData.district" ng-pattern ="/^[A-Za-z\s]*$/" ng-maxlength="10" required>
+                            <p ng-show="driverForm.district.$error.required && (driverForm.district.$dirty || formStepSubmitted)" class="help-block">District is required.</p>
+                            <p ng-show="driverForm.district.$error.pattern && (driverForm.district.$dirty || formStepSubmitted)" class="help-block">District must contain aplhabets only.</p>
+                            <p ng-show="driverForm.district.$error.maxlength && (driverForm.district.$dirty || formStepSubmitted)" class="help-block">District should contain less than 10 characters.</p>
+                        </fieldset>
+                </div>
+                <div class="row">
+                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.state.$invalid && (driverForm.state.$dirty || formStepSubmitted)}">
+                        <label for="exampleSelect1">State</label>
+                        <select name="state" class="form-control" id="exampleSelect1"
+                         ng-model="formData.state"
+                         ng-options="option.value as option.name for option in stateList"
+                         required>
+                        </select>
+                        <p ng-show="driverForm.state.$error.required && (driverForm.state.$dirty || formStepSubmitted)" class="help-block">State is required.</p>
+                    </fieldset>
+                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : driverForm.zipcode.$invalid && (driverForm.zipcode.$dirty || formStepSubmitted)}">
+                        <label for="exampleInputEmail1">Zipcode</label>
+                        <input type="text" name="zipcode" class="form-control" id="exampleInputEmail1" placeholder="Zipcode" ng-model="formData.zipcode" ng-pattern ="/^[0-9\s]*$/" ng-minlength="6" maxlength="6" required>
+                        <p ng-show="driverForm.zipcode.$error.required && (driverForm.zipcode.$dirty || formStepSubmitted)" class="help-block">Zipcode is required.</p>
+                        <p ng-show="driverForm.zipcode.$error.pattern && (driverForm.zipcode.$dirty || formStepSubmitted)" class="help-block">Zipcode must contain numerics only.</p>
+                        <p ng-show="driverForm.zipcode.$error.maxlength && (driverForm.zipcode.$dirty || formStepSubmitted)" class="help-block">Zipcode must contain 6 characters.</p>
+                        <p ng-show="driverForm.zipcode.$error.minlength && (driverForm.zipcode.$dirty || formStepSubmitted)" class="help-block">Zipcode must contain 6 characters.</p>
+                    </fieldset>
+                </div> 
+                    
+                </div>
+            </rd-widget-body>
+        </rd-widget>   
+    </div>
+</div>
+<center>
+    <div>
+        <a ng-click="goToNextSection(driverForm.$valid)" class="btn btn-info ">    
+        Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+        </a>
+    </div>
+</center>

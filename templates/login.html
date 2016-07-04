@@ -1,0 +1,24 @@
+<div>&nbsp;</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <form name="form" class="css-form form-signin form-center" novalidate >
+              <h2 class="form-signin-heading text-center ">Login</h2>    
+              <label for="inputEmail" class="sr-only">Email address</label> 
+              <input type="email" name="email" ng-model="user.email" class="form-control" placeholder="Email address"  required >
+              <span class="error-color" ng-show="form.$submitted || form.email.$touched">
+              <span  ng-show="form.email.$error.required">Email is required.</span>
+              <span  ng-show="form.email.$error.email">Invalid email address.</span>
+              </span>       
+
+              <label for="inputPassword" class="sr-only">Password</label> 
+              <input name="password"  type="password" id="password" ng-model="user.password" ng-minlength="6"  class="form-control password-field" placeholder="Password" required>
+              <span class="error-color" ng-show="form.$submitted || form.password.$touched">
+              <span ng-show="form.password.$error.required">Password is required.</span>
+              <span ng-show="form.password.$error.minlength">Password must be atleast 6 char.</span>
+              </span>
+            <button class="btn btn-lg btn-primary btn-block"  ng-click="update(user)" type="submit">Login</button>
+          </form>
+        </div><!-- COL OFFSET-->
+      </div><!-- ROW-->
+    </div> <!-- /container -->

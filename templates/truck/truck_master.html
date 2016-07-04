@@ -1,0 +1,439 @@
+<div class="row">    
+    <div class="col-lg-12">
+        <rd-widget>
+          <div class="driver-info-widget">
+          <rd-widget-header icon="fa-users" title="Truck Info">                
+          </rd-widget-header>  
+
+          
+      
+          <rd-widget-body classes="medium no-padding driver-info-widget-body">
+            <!-- use ng-submit to catch the form submission and use our Angular function -->
+            <form name="truckForm" id="signup-form" ng-submit="submitForm()" novalidate>
+                <div class="row">    
+                    <div class="col-lg-12">
+                        <rd-widget>
+                            <rd-widget-body classes="no-padding">
+                                <div class="col-sm-12 col-md-12">  
+                                    <div class="row"> 
+                                         <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.truck_type.$invalid && (truckForm.truck_type.$dirty || submitted)}">
+                                             <label>Truck type</label>
+                                             <select disable-search="true" name="truck_type" class="form-control"
+                                             ng-model="formData.truck_type"
+                                             ng-options="truck_type.Name as truck_type.Name for truck_type in truckTypeList"
+                                             ng-required="true">
+                                             <option value=''>Select</option>
+                                             </select>
+                                             <p ng-show="truckForm.truck_type.$error.required && (truckForm.truck_type.$dirty || submitted)" class="help-block">Truck type field is required</p>
+                                         </fieldset>  
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.operating_company_code.$invalid && (truckForm.operating_company_code.$dirty || submitted)}">
+                                             <label>Operating Company Code</label>
+                                             <select disable-search="true" name="operating_company_code" class="form-control"
+                                             ng-model="formData.operating_company_code"
+                                             ng-options="operating_company_code.id as operating_company_code.Name for operating_company_code in operatingCompanyCodeList"
+                                             ng-required="true">
+                                             <option value=''>Select</option>
+                                             </select>
+                                             <p ng-show="truckForm.operating_company_code.$error.required && (truckForm.operating_company_code.$dirty || submitted)" class="help-block">Operating Company Code field is required</p>
+                                        </fieldset> 
+                                    </div>
+                                    <div class="row"> 
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.plant.$invalid && (truckForm.plant.$dirty || submitted)}">
+                                             <label>Plant</label>
+                                             <select disable-search="true" name="plant" class="form-control"
+                                             ng-model="formData.plant"
+                                             ng-options="plant.id as plant.Name for plant in plantList"
+                                             ng-required="true">
+                                             <option value=''>Select</option>
+                                             </select>
+                                             <p ng-show="truckForm.plant.$error.required && (truckForm.plant.$dirty || submitted)" class="help-block">Plant field is required</p>
+                                        </fieldset> 
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.vehicle_type.$invalid && (truckForm.vehicle_type.$dirty || submitted)}">
+                                             <label>Vehicle Type</label>
+                                             <select disable-search="true" name="vehicle_type" class="form-control"
+                                             ng-model="formData.vehicle_type"
+                                             ng-options="vehicle_type.id as vehicle_type.Name for vehicle_type in vehicleTypeList"
+                                             ng-required="true">
+                                             <option value=''>Select</option>
+                                             </select>
+                                             <p ng-show="truckForm.vehicle_type.$error.required && (truckForm.vehicle_type.$dirty || submitted)" class="help-block">Vehicle Type field is required</p>
+                                        </fieldset>
+                                    </div>    
+                                    <div class="row"> 
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.vehicle_number.$invalid  && (truckForm.vehicle_number.$dirty || submitted || truckForm.vehicle_number.touched)}">
+                                            <label for="exampleInputEmail1">Vehicle Number</label>
+                                            <input type="text" name="vehicle_number" class="form-control" id="exampleInputEmail1" placeholder="Vehicle Number" ng-model="formData.vehicle_number" required ng-maxlength="10">
+                                            <p ng-show="truckForm.vehicle_number.$error.required && (truckForm.vehicle_number.$dirty || truckForm.vehicle_number.touched || submitted)" class="help-block">Vehicle Number field is required</p>
+                                            <p ng-show="truckForm.vehicle_number.$error.maxlength" class="help-block">Vehicle Number not more than 10 characters</p>
+                                        </fieldset>
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                            <label for="exampleInputEmail1">RFID Tag ID</label>
+                                            <input type="text" name="rfid_tag_id" class="form-control" id="rfid_tag_id" placeholder="Last Name" ng-model="formData.rfid_tag_id" ng-maxlength="24" maxlength="24">
+                                        </fieldset>
+                                    </div>
+                                    <div class="row">  
+                                         <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                             <label>GPS fitted</label>
+                                             <select disable-search="true" name="gps_fitted" class="form-control"
+                                             ng-model="formData.gps_fitted"
+                                             ng-options="gps_fitted.Name as gps_fitted.Name for gps_fitted in gpsFittedList">
+                                             <option value=''>Select</option>
+                                             </select>
+                                        </fieldset>   
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.gps_serial_number.$invalid }">
+                                            <label for="exampleInputEmail1">GPS Serial Number</label>
+                                            <input type="text" name="gps_serial_number" class="form-control" id="gps_serial_number" placeholder="GPS Serial Number" ng-pattern ="/^[a-zA-Z\s]*$/" ng-model="formData.gps_serial_number" ng-maxlength="20" maxlength="20">
+                                            <p class="help-block" ng-show="truckForm.gps_serial_number.$error.pattern">Text only, please.</p>
+                                        </fieldset>
+                                    </div>
+                                    <div class="row">
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6">
+                                             <label>Vehicle Make</label>
+                                             <select disable-search="true" name="vehicle_make" class="form-control"
+                                             ng-model="formData.vehicle_make"
+                                             ng-options="vehicle_make.Name as vehicle_make.Name for vehicle_make in gpsFittedList" ng-maxlength="24" maxlength="24">
+                                             <option value=''>Select</option>
+                                             </select>
+                                        </fieldset>   
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.engine_no.$invalid }">
+                                            <label for="exampleInputEmail1">Engine No</label>
+                                            <input type="text" name="engine_no" class="form-control" id="engine_no" placeholder="Engine No" ng-pattern ="/^[a-zA-Z0-9 \s]*$/" ng-model="formData.engine_no" ng-maxlength="24" maxlength="24">
+                                            <p class="help-block" ng-show="truckForm.engine_no.$error.pattern">Special Characters not allowed</p>
+                                        </fieldset>
+                                    </div>
+                                    <div class="row"> 
+                                        <div class="form-group col-xs-12 col-sm-6 col-md-6" ng-controller="DatepickerDBO">
+                                            <!--            <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>-->
+                                            <label for="exampleInputEmail1">Manufacture Year</label>
+                                            <p class="input-group">
+                                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" name="manufacture_year" ng-model="formData.manufacture_year" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.vehicle_model_no.$invalid }">
+                                            <label  for="exampleSelect6">Vehicle Model Number</label>
+                                           <input type="text" name="vehicle_model_no" class="form-control" id="vehicle_model_no" placeholder="Vehicle Model Number" ng-pattern ="/^[a-zA-Z0-9 \s]*$/" ng-model="formData.vehicle_model_no" ng-maxlength="20" maxlength="20">
+                                            <p class="help-block" ng-show="truckForm.vehicle_model_no.$error.pattern">Special Characters not allowed</p>
+                                        </fieldset>
+                                    </div>
+
+                                    <div class="row">
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.vehicle_model_name.$invalid }">
+                                            <label  for="exampleSelect6">Vehicle Model Name</label>
+                                           <input type="text" name="vehicle_model_name" class="form-control" id="vehicle_model_name" placeholder="Vehicle Model Name" ng-pattern ="/^[a-zA-Z0-9 \s]*$/" ng-model="formData.vehicle_model_name" ng-maxlength="20" maxlength="20">
+                                            <p class="help-block" ng-show="truckForm.vehicle_model_name.$error.pattern">Special Characters not allowed</p>
+                                        </fieldset>
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.carrying_capacity.$invalid && (truckForm.carrying_capacity.$dirty || submitted || truckForm.carrying_capacity.touched)}">
+                                            <label  for="exampleSelect6">RTO Certified Carrying Capacity (in tons)</label>
+                                           <input type="text" name="carrying_capacity" class="form-control" id="carrying_capacity" placeholder="RTO Certified Carrying Capacity" ng-pattern ="/^[0-9\s]*$/" ng-model="formData.carrying_capacity" ng-maxlength="13" maxlength="13" required>
+                                           <p ng-show="truckForm.carrying_capacity.$error.required && (truckForm.carrying_capacity.$dirty || submitted || truckForm.carrying_capacity.touched)" class="help-block">RTO Certified Carrying Capacity is required</p>
+                                            <p ng-show="truckForm.carrying_capacity.$error.maxlength" class="help-block">RTO Certified Carrying Capacity not more than 13 characters</p>
+                                            <p class="help-block" ng-show="truckForm.carrying_capacity.$error.pattern">Only digits allowed</p>
+                                        </fieldset>
+                                    </div>
+                                    <div class="row">
+                                         <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.number_of_wheel.$invalid }">
+                                            <label  for="exampleSelect6">Number of wheels</label>
+                                           <input type="text" name="number_of_wheel" class="form-control" id="number_of_wheel" placeholder="Number of wheels" ng-pattern ="/^[0-9\s]*$/" ng-model="formData.number_of_wheel" ng-maxlength="2" maxlength="2">
+                                            <p class="help-block" ng-show="truckForm.number_of_wheel.$error.pattern">Only digits allowed</p>
+                                        </fieldset>
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.vehicle_origination_station.$invalid && (truckForm.vehicle_origination_station.$dirty || submitted || truckForm.vehicle_origination_station.touched)}">
+                                            <label  for="exampleSelect6">Vehicle Originating Station</label>
+                                           <input type="text" name="vehicle_origination_station" class="form-control" id="vehicle_origination_station" placeholder="RTO Certified Carrying Capacity" ng-pattern ="/^[a-zA-Z0-9 \s]*$/" ng-model="formData.vehicle_origination_station" ng-maxlength="30" maxlength="30" required>
+                                           <p ng-show="truckForm.vehicle_origination_station.$error.required && (truckForm.vehicle_origination_station.$dirty || submitted || truckForm.vehicle_origination_station.touched)" class="help-block">Vehicle Originating Station is required</p>
+                                            <p ng-show="truckForm.vehicle_origination_station.$error.maxlength" class="help-block">Vehicle Originating Station not more than 30 characters</p>
+                                            <p class="help-block" ng-show="truckForm.vehicle_origination_station.$error.pattern">Special Characters not allowed</p>
+                                        </fieldset>
+                                </div>
+                                <div class="row">
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.county_code.$invalid && (truckForm.county_code.$dirty || submitted || truckForm.county_code.touched)}">
+                                            <label  for="exampleSelect6">County Code</label>
+                                           <input type="text" name="county_code" class="form-control" id="county_code" placeholder="County Code" ng-pattern ="/^[a-zA-Z0-9\s]*$/" ng-model="formData.county_code" ng-maxlength="3" maxlength="3" required>
+                                           <p ng-show="truckForm.county_code.$error.required && (truckForm.county_code.$dirty || submitted || truckForm.county_code.touched)" class="help-block">County Code is required</p>
+                                            <p ng-show="truckForm.county_code.$error.maxlength" class="help-block">County Code not more than 3 characters</p>
+                                            <p class="help-block" ng-show="truckForm.county_code.$error.pattern">Special Characters not allowed</p>
+                                        </fieldset>
+                                        <div class="form-group col-xs-12 col-sm-6 col-md-6" ng-controller="DatepickerDBO">
+                                            <!--            <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>-->
+                                            <label for="exampleInputEmail1">PVC Date of Issue</label>
+                                            <p class="input-group">
+                                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" name="pvc_issue_date" ng-model="formData.pvc_issue_date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                </span>
+                                            </p>
+                                        </div>                                        
+                                </div>
+                                <div class="row">
+                                        <div class="form-group col-xs-12 col-sm-6 col-md-6" ng-controller="DatepickerDBO">
+                                            <!--            <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>-->
+                                            <label for="exampleInputEmail1">Validity Date for PVC</label>
+                                            <p class="input-group">
+                                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" name="pvc_validity_date" ng-model="formData.pvc_validity_date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                </span>
+                                            </p>
+                                        </div>  
+                                        <div class="form-group col-xs-12 col-sm-6 col-md-6" ng-controller="DatepickerDBO">
+                                            <!--            <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>-->
+                                            <label for="exampleInputEmail1">Road Tax Renewal Date</label>
+                                            <p class="input-group">
+                                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" name="road_tax_renewal_date" ng-model="formData.road_tax_renewal_date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                </span>
+                                            </p>
+                                        </div>                                       
+                                </div>
+                                 <div class="row">
+                                        <div class="form-group col-xs-12 col-sm-6 col-md-6" ng-controller="DatepickerDBO">
+                                            <!--            <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>-->
+                                            <label for="exampleInputEmail1">Fitness Renewal Date</label>
+                                            <p class="input-group">
+                                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" name="fitness_renewal_date" ng-model="formData.fitness_renewal_date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                </span>
+                                            </p>
+                                        </div>  
+                                        <div class="form-group col-xs-12 col-sm-6 col-md-6" ng-controller="DatepickerDBO" ng-class="{ 'has-error' : truckForm.insurance_expiry_date.$invalid && (truckForm.insurance_expiry_date.$dirty || submitted || truckForm.insurance_expiry_date.touched)}">
+                                            <!--            <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>-->
+                                            <label for="exampleInputEmail1">Insurance Expiry Date</label>
+                                            <p class="input-group">
+                                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" name="insurance_expiry_date" ng-model="formData.insurance_expiry_date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                </span>
+                                            </p>
+                                            <p ng-show="truckForm.insurance_expiry_date.$error.required && (truckForm.insurance_expiry_date.$dirty || submitted || truckForm.insurance_expiry_date.touched)" class="help-block">Insurance Expiry Date is required</p>                                            
+                                        </div>                                       
+                                </div>
+                                <div class="row">
+                                        <div class="form-group col-xs-12 col-sm-6 col-md-6" ng-controller="DatepickerDBO" ng-class="{ 'has-error' : truckForm.goods_permit_validity_date.$invalid && (truckForm.goods_permit_validity_date.$dirty || submitted || truckForm.goods_permit_validity_date.touched)}">
+                                            <!--            <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>-->
+                                            <label for="exampleInputEmail1">Goods Permit Validity date</label>
+                                            <p class="input-group">
+                                                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" name="goods_permit_validity_date" ng-model="formData.goods_permit_validity_date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                </span>
+                                            </p>
+                                            <p ng-show="truckForm.goods_permit_validity_date.$error.required && (truckForm.goods_permit_validity_date.$dirty || submitted || truckForm.goods_permit_validity_date.touched)" class="help-block">Goods Permit Validity date is required</p>   
+                                        </div>                                          
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.status.$invalid && (truckForm.status.$dirty || submitted)}">
+                                             <label>Status</label>
+                                             <select disable-search="true" name="status" class="form-control"
+                                             ng-model="formData.status"
+                                             ng-options="status.Name as status.Name for status in statusList"
+                                             ng-required="true">
+                                             <option value=''>Select</option>
+                                             </select>
+                                             <p ng-show="truckForm.status.$error.required && (truckForm.status.$dirty || submitted)" class="help-block">Status field is required</p>
+                                         </fieldset> 
+                                </div>
+                                <div class="row">
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.vehicle_dedication.$invalid && (truckForm.vehicle_dedication.$dirty || submitted)}">
+                                         <label>Vehicle Dedication</label>
+                                         <select disable-search="true" name="vehicle_dedication" class="form-control"
+                                         ng-model="formData.vehicle_dedication"
+                                         ng-options="vehicle_dedication.Name as vehicle_dedication.Name for vehicle_dedication in gpsFittedList"
+                                         ng-required="true">
+                                         <option value=''>Select</option>
+                                         </select>
+                                         <p ng-show="truckForm.vehicle_dedication.$error.required && (truckForm.vehicle_dedication.$dirty || submitted)" class="help-block">Vehicle Dedication field is required</p>
+                                    </fieldset>
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.vehicle_ownership_type.$invalid && (truckForm.vehicle_ownership_type.$dirty || submitted)}">
+                                         <label>Vehicle Ownership Type</label>
+                                         <select disable-search="true" name="vehicle_ownership_type" class="form-control"
+                                         ng-model="formData.vehicle_ownership_type"
+                                         ng-options="vehicle_ownership_type.Name as vehicle_ownership_type.Name for vehicle_ownership_type in gpsFittedList"
+                                         ng-required="true">
+                                         <option value=''>Select</option>
+                                         </select>
+                                         <p ng-show="truckForm.vehicle_ownership_type.$error.required && (truckForm.vehicle_ownership_type.$dirty || submitted)" class="help-block">Vehicle Ownership Type is required</p>
+                                    </fieldset>
+                                </div>
+                                <div class="row">
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.vehicle_transaction_category.$invalid }">
+                                            <label  for="exampleSelect6">Vehicle Transaction Category</label>
+                                           <input type="text" name="vehicle_transaction_category" class="form-control" id="vehicle_transaction_category" placeholder="Vehicle Transaction Category" ng-pattern ="/^[a-zA-Z\s]*$/" ng-model="formData.vehicle_transaction_category" ng-maxlength="1" maxlength="1">
+                                            <p class="help-block" ng-show="truckForm.vehicle_transaction_category.$error.pattern">Only alphabets allowed</p>
+                                            <p ng-show="truckForm.vehicle_transaction_category.$error.maxlength" class="help-block">Vehicle Transaction Category not more than 1 characters</p>
+                                        </fieldset>
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.optimal_capacity.$invalid }">
+                                            <label  for="exampleSelect6">Optimal capacity</label>
+                                           <input type="text" name="optimal_capacity" class="form-control" id="optimal_capacity" placeholder="Optimal capacity" ng-pattern ="/^[0-9\s]*$/" ng-model="formData.optimal_capacity" ng-maxlength="5" maxlength="5">
+                                            <p class="help-block" ng-show="truckForm.optimal_capacity.$error.pattern">Only digits allowed</p>
+                                            <p ng-show="truckForm.optimal_capacity.$error.maxlength" class="help-block">Optimal capacity not more than 5 digits</p>
+                                        </fieldset>
+                                </div>   
+                                <div class="row">
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.chassis_number.$invalid }">
+                                            <label  for="exampleSelect6">Chassis Number</label>
+                                           <input type="text" name="chassis_number" class="form-control" id="chassis_number" placeholder="Chassis Number" ng-pattern ="/^[a-zA-Z\s]*$/" ng-model="formData.chassis_number" ng-maxlength="20" maxlength="20">
+                                            <p class="help-block" ng-show="truckForm.chassis_number.$error.pattern">Only alphabets allowed</p>
+                                            <p ng-show="truckForm.chassis_number.$error.maxlength" class="help-block">Chassis Number not more than 20 characters</p>
+                                        </fieldset>
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.gross_carrying_capacity_mt.$invalid }">
+                                            <label  for="exampleSelect6">Gross Carrying Capacity MT</label>
+                                           <input type="text" name="gross_carrying_capacity_mt" class="form-control" id="gross_carrying_capacity_mt" placeholder="Gross Carrying Capacity MT" ng-pattern ="/^[0-9\s]*$/" ng-model="formData.gross_carrying_capacity_mt" ng-maxlength="6" maxlength="6">
+                                            <p class="help-block" ng-show="truckForm.gross_carrying_capacity_mt.$error.pattern">Only digits allowed</p>
+                                            <p ng-show="truckForm.gross_carrying_capacity_mt.$error.maxlength" class="help-block">Gross Carrying Capacity MT not more than 6 digits</p>
+                                        </fieldset>
+                                </div>  
+                                <div class="row">
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.unladen_weight_mt.$invalid }">
+                                            <label  for="exampleSelect6">Unladen Weight MT</label>
+                                           <input type="text" name="unladen_weight_mt" class="form-control" id="unladen_weight_mt" placeholder="Unladen Weight MT" ng-pattern ="/^[0-9\s]*$/" ng-model="formData.unladen_weight_mt" ng-maxlength="4" maxlength="4">
+                                            <p class="help-block" ng-show="truckForm.unladen_weight_mt.$error.pattern">Only digits allowed</p>
+                                            <p ng-show="truckForm.unladen_weight_mt.$error.maxlength" class="help-block">Unladen Weight MT not more than 4 digits</p>
+                                        </fieldset>
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.owner_name.$invalid }">
+                                            <label  for="exampleSelect6">Owner Name</label>
+                                           <input type="text" name="owner_name" class="form-control" id="owner_name" placeholder="Owner Name" ng-pattern ="/^[a-zA-Z\s]*$/" ng-model="formData.owner_name" ng-maxlength="20" maxlength="20">
+                                            <p class="help-block" ng-show="truckForm.owner_name.$error.pattern">Only alphabets allowed</p>
+                                            <p ng-show="truckForm.owner_name.$error.maxlength" class="help-block">Owner Name not more than 20 characters</p>
+                                        </fieldset>
+                                </div>    
+                                <div class="row">
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.vehicle_length.$invalid }">
+                                            <label  for="exampleSelect6">Vehicle Length (in feet)</label>
+                                           <input type="text" name="vehicle_length" class="form-control" id="vehicle_length" placeholder="Vehicle Length (in feet)" ng-pattern ="/^[0-9\s]*$/" ng-model="formData.vehicle_length" ng-maxlength="3" maxlength="3">
+                                            <p class="help-block" ng-show="truckForm.vehicle_length.$error.pattern">Only digits allowed</p>
+                                            <p ng-show="truckForm.vehicle_length.$error.maxlength" class="help-block">Vehicle Length (in feet) not more than 3 digits</p>
+                                        </fieldset>
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.vehicle_height.$invalid }">
+                                            <label  for="exampleSelect6">Vehicle Height (in feet)</label>
+                                           <input type="text" name="vehicle_height" class="form-control" id="vehicle_height" placeholder="Vehicle Height (in feet)" ng-pattern ="/^[0-9\s]*$/" ng-model="formData.vehicle_height" ng-maxlength="3" maxlength="3">
+                                            <p class="help-block" ng-show="truckForm.vehicle_height.$error.pattern">Only digits allowed</p>
+                                            <p ng-show="truckForm.vehicle_height.$error.maxlength" class="help-block">Vehicle Height (in feet) not more than 3 digits</p>
+                                        </fieldset>
+                                </div>  
+                                <div class="row">
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.vehicle_oh_s_rating.$invalid}">
+                                         <label>Vehicle OH & S Rating</label>
+                                         <select disable-search="true" name="vehicle_oh_s_rating" class="form-control"
+                                         ng-pattern ="/^[a-zA-Z\s]*$/"
+                                         ng-model="formData.vehicle_oh_s_rating"
+                                         ng-options="vehicle_oh_s_rating.Name as vehicle_oh_s_rating.Name for vehicle_oh_s_rating in vehicleOhRatingList"
+                                         >
+                                         <option value=''>Select</option>
+                                         </select>
+                                          <p class="help-block" ng-show="truckForm.vehicle_oh_s_rating.$error.pattern">Only aphabets allowed</p>
+                                         
+                                    </fieldset>
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.pr_warehouse.$invalid }">
+                                            <label  for="exampleSelect6">PR Warehouse</label>
+                                           <input type="text" name="pr_warehouse" class="form-control" id="pr_warehouse" placeholder="PR Warehouse" ng-pattern ="/^[a-zA-Z\s]*$/" ng-model="formData.pr_warehouse" ng-maxlength="4" maxlength="4">
+                                            <p class="help-block" ng-show="truckForm.pr_warehouse.$error.pattern">Only alphabets allowed</p>
+                                            <p ng-show="truckForm.pr_warehouse.$error.maxlength" class="help-block">PR Warehouse not more than 4 characters</p>
+                                    </fieldset>
+                                </div> 
+                                <div class="row">
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.vehicle_priority.$invalid }">
+                                            <label  for="exampleSelect6">Vehicle Priority</label>
+                                           <input type="text" name="vehicle_priority" class="form-control" id="vehicle_priority" placeholder="Vehicle Priority" ng-pattern ="/^[a-zA-Z\s]*$/" ng-model="formData.vehicle_priority" ng-maxlength="1" maxlength="1">
+                                            <p class="help-block" ng-show="truckForm.vehicle_priority.$error.pattern">Only alphabets allowed</p>
+                                            <p ng-show="truckForm.vehicle_priority.$error.maxlength" class="help-block">Vehicle Priority not more than 1 characters</p>
+                                        </fieldset>
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.default_stacking_recipe.$invalid }">
+                                            <label  for="exampleSelect6">Default stacking recipe</label>
+                                           <input type="text" name="default_stacking_recipe" class="form-control" id="default_stacking_recipe" placeholder="Default stacking recipe" ng-pattern ="/^[a-zA-Z\s]*$/" ng-model="formData.default_stacking_recipe" ng-maxlength="12" maxlength="12">
+                                            <p class="help-block" ng-show="truckForm.default_stacking_recipe.$error.pattern">Only alphabets allowed</p>
+                                            <p ng-show="truckForm.default_stacking_recipe.$error.maxlength" class="help-block">Chassis Number not more than 12 characters</p>
+                                        </fieldset>
+                                </div>
+                                <div class="row">
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.vehicle_width.$invalid }">
+                                            <label  for="exampleSelect6">Vehicle Width (in feet)</label>
+                                           <input type="text" name="vehicle_width" class="form-control" id="vehicle_width" placeholder="Vehicle Width (in feet)" ng-pattern ="/^[0-9\s]*$/" ng-model="formData.vehicle_width" ng-maxlength="3" maxlength="3">
+                                            <p class="help-block" ng-show="truckForm.vehicle_width.$error.pattern">Only digits allowed</p>
+                                            <p ng-show="truckForm.vehicle_width.$error.maxlength" class="help-block">Vehicle Width (in feet) not more than 3 digits</p>
+                                        </fieldset>
+                                        <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.vehicle_body_type.$invalid }">
+                                            <label  for="exampleSelect6">Vehicle Body Type (in feet)</label>
+                                           <input type="text" name="vehicle_body_type" class="form-control" id="vehicle_body_type" placeholder="Vehicle Body Type (in feet)" ng-pattern ="/^[a-zA-Z\s]*$/" ng-model="formData.vehicle_body_type" ng-maxlength="5" maxlength="5">
+                                            <p class="help-block" ng-show="truckForm.vehicle_body_type.$error.pattern">Only alphabets allowed</p>
+                                            <p ng-show="truckForm.vehicle_body_type.$error.maxlength" class="help-block">Vehicle Body Type  not more than 5 characters</p>
+                                        </fieldset>
+                                </div>
+                                <div class="row">
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.transporter_code.$invalid}">
+                                         <label>Transporter Code</label>
+                                         <select disable-search="true" name="transporter_code" class="form-control"
+                                         ng-pattern ="/^[a-zA-Z0-9 \s]*$/"
+                                         ng-model="formData.transporter_code"
+                                         ng-options="transporter_code.Name as transporter_code.Name for transporter_code in transporterCodeList"
+                                         >
+                                         <option value=''>Select</option>
+                                         </select>
+                                          <p class="help-block" ng-show="truckForm.transporter_code.$error.pattern">Special symbols are not allowed</p>     
+                                    </fieldset>
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.transporter_name.$invalid}">
+                                         <label>Transporter Name</label>
+                                         <select disable-search="true" name="transporter_name" class="form-control"
+                                         ng-pattern ="/^[a-zA-Z\s]*$/"
+                                         ng-model="formData.transporter_name"
+                                         ng-options="transporter_name.Name as transporter_name.Name for transporter_name in transporteNames"
+                                         >
+                                         <option value=''>Select</option>
+                                         </select>
+                                          <p class="help-block" ng-show="truckForm.transporter_name.$error.pattern">Only aphabets allowed</p>     
+                                    </fieldset>
+                                </div>
+                                <div class="row">
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.blacklist.$invalid}">
+                                         <label>Blacklist (Y/N)</label>
+                                         <select disable-search="true" name="blacklist" class="form-control"
+                                         ng-pattern ="/^[a-zA-Z\s]*$/"
+                                         ng-model="formData.blacklist"
+                                         ng-options="blacklist.Name as blacklist.Name for blacklist in gpsFittedList" ng-maxlength="4" maxlength="4"
+                                         >
+                                         <option value=''>Select</option>
+                                         </select>
+                                          <p class="help-block" ng-show="truckForm.blacklist.$error.pattern">Only aphabets allowed</p> 
+                                          <p ng-show="truckForm.blacklist.$error.maxlength" class="help-block">Blacklist not more than 4 characters</p>   
+                                    </fieldset>
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.reason_for_blacklist.$invalid}">
+                                         <label>Reason for Black List</label>
+                                         <select disable-search="true" name="reason_for_blacklist" class="form-control"
+                                         ng-pattern ="/^[a-zA-Z\s]*$/"
+                                         ng-model="formData.reason_for_blacklist"
+                                         ng-options="reason_for_blacklist.Name as reason_for_blacklist.Name for reason_for_blacklist in reasonForBlacklist"
+                                         ng-maxlength="15" maxlength="15"
+                                         >
+                                         <option value=''>Select</option>
+                                         </select>
+                                          <p class="help-block" ng-show="truckForm.reason_for_blacklist.$error.pattern">Only aphabets allowed</p>     
+                                           <p ng-show="truckForm.reason_for_blacklist.$error.maxlength" class="help-block">Reason for Black List  not more than 15 characters</p>
+                                    </fieldset>
+                                </div> 
+
+                                <div class="row"> 
+                                    <fieldset class="form-group col-xs-12 col-sm-6 col-md-6" ng-class="{ 'has-error' : truckForm.remarks.$invalid}">
+                                        <label  for="exampleSelect5">Remarks</label>
+                                        <textarea ng-pattern ="/^[a-zA-Z0-9 \s]*$/" ng-model="formData.remarks" name="remarks" rows="2" cols="30" class="form-control" id="remarks" placeholder="Remarks">
+                                        </textarea>
+                                        <p class="help-block" ng-show="truckForm.remarks.$error.pattern">Special symbols are not allowed</p>  
+                                    </fieldset>
+                                </div>
+                                    
+                                </div>
+                            </rd-widget-body>
+                        </rd-widget>   
+                    </div>
+                </div>
+                <center>
+                    <div>
+                       <button type="submit" class="btn btn-primary">Add Truck</button>
+                    </div>
+                </center>
+            </form>
+          </rd-widget-body>
+          </div>
+        <rd-widget>
+    </div>
+</div>  

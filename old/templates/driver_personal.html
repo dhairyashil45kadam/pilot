@@ -1,0 +1,205 @@
+<style>
+    .full button span {
+        background-color: limegreen;
+        border-radius: 32px;
+        color: black;
+    }
+    .partially button span {
+        background-color: orange;
+        border-radius: 32px;
+        color: black;
+
+    }
+</style>
+
+
+<div class="row">    
+    <div class="col-lg-12">
+        <rd-widget>
+            <rd-widget-body classes="no-padding">
+                <div class="col-sm-6">
+                    <fieldset class="form-group">
+                        <label for="exampleInputEmail1">Driver ID</label>
+                        <input type="text" name="driver_ID" class="form-control" id="exampleInputEmail1" placeholder="Last Name" ng-model="driver_ID" required>
+                        <span class="error-msg" ng-show="driverForm.driver_ID.$touched && driverForm.driver_ID.$invalid">The Driver ID is required.</span>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="exampleInputEmail1">NFC card Number</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="NFC card Number">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="exampleSelect1">Actual / Substitute</label>
+                        <select class="form-control" id="exampleSelect1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="exampleSelect2">Issue / Re  issue</label>
+                        <select class="form-control" id="exampleSelect2">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="exampleInputEmail1">First Name</label>
+                        <input type="text" name="first_name" class="form-control" id="exampleInputEmail1" placeholder="Last Name" ng-model="first_name" required>
+                        <span class="error-msg" ng-show="driverForm.first_name.$touched && driverForm.first_name.$invalid">The first name is required.</span>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="exampleInputEmail1">Last Name</label>
+                        <input type="text" name="last_name" class="form-control" id="exampleInputEmail1" placeholder="Last Name" ng-model="last_name" required>
+                        <span class="error-msg" ng-show="driverForm.last_name.$touched && driverForm.last_name.$invalid">The last name is required.</span>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="exampleInputEmail1">Contact No</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" ng-minlength="10" maxlength="10" pattern=".{10,10}" ng-required="true" placeholder="Contact No" name="contact_no" ng-model="contact_no" required valid-number>
+                        <span class="error-msg" ng-show="driverForm.contact_no.$touched && driverForm.contact_no.$invalid">The contact number is required.</span>
+                        <span class="error-msg" ng-show="((driverForm.contact_no.$error.minlength ||  driverForm.contact_no.$error.maxlength) &&                  driverForm.contact_no.$dirty) ">
+                           phone number should be 10 digits
+                        </span>
+                    </fieldset>
+                    
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect3">Marital Status</label>
+                        <select multiple class="form-control" id="exampleSelect3">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect3">Upload Photo </label>
+                        <input type="file">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect4">Blood Group</label>
+                        <select class="form-control" id="exampleSelect4">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </fieldset>
+                    
+                    <div ng-controller="DatepickerDBO">
+                        <!--            <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>-->
+                        <label for="exampleInputEmail1">Date of Birth</label>
+                        <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                    <fieldset class="form-group">
+                        <label for="exampleInputEmail1">Driver Passport No</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Driver Passport No">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="exampleInputEmail1">Aadhaar No</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Aadhaar No">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect5">Default Vehicle No option to have more vehicles</label>
+                        <select multiple class="form-control" id="exampleSelect4">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </fieldset>
+                    
+                </div>
+                <div class="col-sm-6">
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect5">Plant(s) mark one as default</label>
+                        <select multiple class="form-control" id="exampleSelect4">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect5">Transporter Name</label>
+                        <select multiple class="form-control" id="exampleSelect4">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect5">Transporter Code</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Transporter Code">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect5">Transporter Supervisor</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Transporter Supervisor">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect5">Driving License - Place of issue</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Driving License - Place of issue">
+                    </fieldset>
+                    <div ng-controller="DatepickerDBO">
+                        <!--            <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>-->
+                        <label for="exampleInputEmail1">Driving License - Expiry Date</label>
+                        <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect5">Address Line 1</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Address Line 1">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect5">Address Line 2</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Address Line 2">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect5">Address Line 3</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Address Line 3">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect5">City</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="City">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect5">District</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="District">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect5">State </label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="State ">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label  for="exampleSelect5">Zipcode </label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Zipcode ">
+                    </fieldset>
+                    
+                </div>
+            </rd-widget-body>
+        </rd-widget>   
+    </div>
+</div>
+<div class="col-xs-6 col-xs-offset-3">
+    <a ui-sref="driver_info.driver_medical" class="btn btn-block btn-info">
+    Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a>
+</div>

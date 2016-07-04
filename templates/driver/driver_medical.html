@@ -1,0 +1,80 @@
+<div class="row">    
+    <div class="col-lg-12">
+        <rd-widget>
+            <rd-widget-body classes="no-padding">
+                <div class="col-sm-12 col-md-12">  
+                    <div class="row"> 
+                        <fieldset class="form-group col-xs-12 col-sm-12 col-md-12">
+                            <label for="exampleSelect1">Ailment 1</label>
+                            <select
+                                chosen
+                                multiple
+                                allow-single-deselect="true"
+                                data-placeholder="Choose Your Ailment 1"
+                                no-results-text="'Tough luck'"
+                                ng-model="driverForm.ailment1"
+                                ng-options="value for value in optionsFromQuery"
+                                style="width:100% !important;">
+                                <option value=""></option>
+                            </select>
+                        </fieldset>
+                        <fieldset class="form-group col-xs-12 col-sm-12 col-md-12">
+                            <label  for="exampleSelect4">Ailment 2</label>
+                            <select
+                                chosen
+                                multiple
+                                allow-single-deselect="true"
+                                data-placeholder="Choose Your Ailment 1"
+                                no-results-text="'Tough luck'"
+                                ng-model="driverForm.ailment2"
+                                ng-options="value for value in optionsFromQuery"
+                                style="width:100% !important;">
+                                <option value=""></option>
+                            </select>
+                        </fieldset>
+                        <fieldset class="form-group col-xs-12 col-sm-12 col-md-12">
+                            <label  for="exampleSelect5">Ailment 3</label>
+                            <select
+                                chosen
+                                multiple
+                                allow-single-deselect="true"
+                                data-placeholder="Choose Your Ailment 1"
+                                no-results-text="'Tough luck'"
+                                ng-model="driverForm.ailment3"
+                                ng-options="value for value in optionsFromQuery"
+                                style="width:100% !important;">
+                                <option value=""></option>
+                            </select>
+                        </fieldset>
+                        <fieldset class="ailment4 form-group col-xs-12 col-sm-12 col-md-12">
+                            <label  for="exampleSelect5">Ailment 4</label>
+                            <select
+                                chosen
+                                multiple
+                                allow-single-deselect="true"
+                                data-placeholder="Choose Your Ailment 1"
+                                no-results-text="'Tough luck'"
+                                ng-model="driverForm.ailment4"
+                                ng-options="value for value in optionsFromQuery"
+                                style="width:100% !important;">
+                                <option value=""></option>
+                            </select>
+                        </fieldset>
+                    </div>
+                </div>
+            </rd-widget-body>
+        </rd-widget>  
+    </div>
+</div>
+<center>
+    <div >
+        <a ng-click="goToNextSection(driverForm.$valid)" class="btn btn-info ">    
+        Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+        </a>
+    </div>
+</center>
+
+
+
+
+
